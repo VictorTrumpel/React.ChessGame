@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "module": "ESNext",
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "jsx": "react",
+    // "types": ["testing-library__jest-dom"]
+  },
+  "include": ["src"]
+}

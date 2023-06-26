@@ -1,0 +1,30 @@
+.chess-cell {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chess-cell.black {
+  background-color: black;
+}
+
+.chess-cell.active {
+  background-color: brown;
+}
+
+.chess-cell.possibleForMove::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: green;
+  opacity: 0.5;
+}
+
+.chess-figure {
+  width: 3rem;
+  height: 3rem;
+}

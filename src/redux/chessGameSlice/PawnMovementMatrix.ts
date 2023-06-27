@@ -1,6 +1,7 @@
 import { FieldMatrix, ActiveCell } from "./types"
+import { IMovementMatrix } from "./IMovementMatrix"
 
-export class PawnMovementMatrix {
+export class PawnMovementMatrix implements IMovementMatrix {
   private _fieldMatrix: FieldMatrix
   private _activeCell: ActiveCell
 
@@ -37,7 +38,12 @@ export class PawnMovementMatrix {
       this._fieldMatrix[rowIdx - 2]?.[colIdx]?.figureKey == null,
     )
 
-    if (this._fieldMatrix[rowIdx - 2] && !isPawnWasMoved && isFarForwardEmpty)
+    if (
+      this._fieldMatrix[rowIdx - 2] &&
+      !isPawnWasMoved &&
+      isFarForwardEmpty &&
+      isForwardEmpty
+    )
       this._fieldMatrix[rowIdx - 2][colIdx].possibleForMove = true
 
     const hasEnemyFromLeftCorner =
@@ -72,7 +78,12 @@ export class PawnMovementMatrix {
       this._fieldMatrix[rowIdx + 2]?.[colIdx]?.figureKey == null,
     )
 
-    if (this._fieldMatrix[rowIdx + 2] && !isPawnWasMoved && isFarForwardEmpty)
+    if (
+      this._fieldMatrix[rowIdx + 2] &&
+      !isPawnWasMoved &&
+      isFarForwardEmpty &&
+      isForwardEmpty
+    )
       this._fieldMatrix[rowIdx + 2][colIdx].possibleForMove = true
 
     const hasEnemyFromLeftCorner =

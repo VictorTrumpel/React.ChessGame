@@ -1,5 +1,4 @@
 import { GameState, FieldMatrixRow } from "./types"
-import { FieldMatrixCell } from "./FieldMatrixCell"
 
 const BlackPawnRow = Array.from({ length: 8 }).map((_, idx) => ({
   figureKey: "p_b",

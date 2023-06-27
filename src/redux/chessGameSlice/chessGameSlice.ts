@@ -1,3 +1,8 @@
+import { HorseMovementMatrix } from "./HorseMovementMatrix"
+import { RockMovementMatrix } from "./RockMovementMatrix"
+import { QueenMovementMatrix } from "./QueenMovementMatrix"
+import { ElephantMovementMatrix } from "./ElephantMovementMatrix"
+import { KingMovementMatrix } from "./KingMovementMatrix"
 import { ActiveCell } from "./types"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { initialGameState } from "./initialGameState"
@@ -96,11 +101,47 @@ export const chessGameSlice = createSlice({
     markPossibleCellsForMove(state, payload: PayloadAction<ActiveCell>) {
       const { rowIdx, colIdx, figureKey } = payload.payload
 
-      new PawnMovementMatrix(state.fieldMatrix, {
-        rowIdx,
-        colIdx,
-        figureKey,
-      }).markPossibleCellsForMove()
+      if (figureKey === "p" || figureKey === "p_b")
+        new PawnMovementMatrix(state.fieldMatrix, {
+          rowIdx,
+          colIdx,
+          figureKey,
+        }).markPossibleCellsForMove()
+
+      if (figureKey === "k" || figureKey === "k_b")
+        new KingMovementMatrix(state.fieldMatrix, {
+          rowIdx,
+          colIdx,
+          figureKey,
+        }).markPossibleCellsForMove()
+
+      if (figureKey === "e" || figureKey === "e_b")
+        new ElephantMovementMatrix(state.fieldMatrix, {
+          rowIdx,
+          colIdx,
+          figureKey,
+        }).markPossibleCellsForMove()
+
+      if (figureKey === "q" || figureKey === "q_b")
+        new QueenMovementMatrix(state.fieldMatrix, {
+          rowIdx,
+          colIdx,
+          figureKey,
+        }).markPossibleCellsForMove()
+
+      if (figureKey === "r" || figureKey === "r_b")
+        new RockMovementMatrix(state.fieldMatrix, {
+          rowIdx,
+          colIdx,
+          figureKey,
+        }).markPossibleCellsForMove()
+
+      if (figureKey === "h" || figureKey === "h_b")
+        new HorseMovementMatrix(state.fieldMatrix, {
+          rowIdx,
+          colIdx,
+          figureKey,
+        }).markPossibleCellsForMove()
     },
 
     clearMarksOnPossibleMovementCells(state) {

@@ -95,4 +95,5 @@ export const initialGameState: GameState = {
     ],
   ],
   activeCell: null,
+  isWhiteSideActive: true,
 }

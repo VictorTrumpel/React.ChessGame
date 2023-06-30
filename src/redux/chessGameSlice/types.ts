@@ -58,4 +58,5 @@ export type ActiveCell = {
 export type GameState = {
   fieldMatrix: FieldMatrix
   activeCell: ActiveCell | null
+  isWhiteSideActive: boolean
 }

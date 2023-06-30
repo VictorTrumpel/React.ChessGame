@@ -22,6 +22,11 @@ export const chessGameSlice = createSlice({
 
       const clickedFigureKey = fieldMatrix[rowIdx][colIdx].figureKey
 
+      if (activeCell == null && clickedFigureKey !== null) {
+        if (state.isWhiteSideActive && clickedFigureKey.includes("_b")) return
+        if (!state.isWhiteSideActive && !clickedFigureKey.includes("_b")) return
+      }
+
       if (clickedFigureKey != null) {
         chessGameSlice.caseReducers.markPossibleCellsForMove(state, {
           payload: { colIdx, rowIdx, figureKey: clickedFigureKey },
@@ -63,6 +68,7 @@ export const chessGameSlice = createSlice({
         fieldMatrix[activeCell.rowIdx][activeCell.colIdx].active = false
 
         state.activeCell = null
+        state.isWhiteSideActive = !state.isWhiteSideActive
 
         chessGameSlice.caseReducers.clearMarksOnPossibleMovementCells(state)
 
@@ -72,12 +78,13 @@ export const chessGameSlice = createSlice({
       // клик по той же самой клетке
       if (
         activeCell != null &&
-        activeCell.rowIdx == rowIdx &&
-        activeCell.colIdx == colIdx
+        activeCell.rowIdx === rowIdx &&
+        activeCell.colIdx === colIdx
       ) {
         fieldMatrix[activeCell.rowIdx][activeCell.colIdx].active = false
 
         state.activeCell = null
+        state.isWhiteSideActive = !state.isWhiteSideActive
 
         chessGameSlice.caseReducers.clearMarksOnPossibleMovementCells(state)
 
@@ -91,6 +98,7 @@ export const chessGameSlice = createSlice({
         fieldMatrix[activeCell.rowIdx][activeCell.colIdx].active = false
 
         state.activeCell = null
+        state.isWhiteSideActive = !state.isWhiteSideActive
 
         chessGameSlice.caseReducers.clearMarksOnPossibleMovementCells(state)
 
